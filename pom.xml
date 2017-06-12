@@ -43,7 +43,7 @@
 						<configuration>
 							<archive>
 								<manifest>
-									<mainClass>${main.class}</mainClass>
+									<mainClass>org.codefx.demo.bingen.energy_model.MainKt</mainClass>
 								</manifest>
 							</archive>
 							
