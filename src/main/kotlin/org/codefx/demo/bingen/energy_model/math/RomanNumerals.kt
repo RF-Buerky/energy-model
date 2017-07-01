@@ -18,9 +18,12 @@ fun asRoman(n: Int): String {
     var isToBig : Boolean = false
     var isToSmall : Boolean = false
     var ausgabe : String = ""
+    var ausgabe_korrigiert : String = ""
 
+    // At first here we get a String with always the highest number possible. The rule to not make an addition
+    // of four identical figures is not faced here. We do this later.
 
-    if (n > 3*l){
+    if (n > 89){
         isToBig = true
     } else if (n < 1*i){
         isToSmall = true
@@ -43,12 +46,24 @@ fun asRoman(n: Int): String {
             ausgabe = ausgabe + "V"
             rest = rest - v
         }
-    }
 
+        while (rest >= i){
+            ausgabe = ausgabe + "I"
+            rest = rest - i
+        }
+    }
 
 
     if (isToBig || isToSmall){
-        ausgabe = "Nur zahlen zwischen 1 und 150 möglich!"
+        ausgabe = "Nur zahlen zwischen 1 und 89 möglich!"
     }
-    return ausgabe
+
+    // Now we face the rule of no addition with four ore more identical figures along side.
+    // We solve this problem by replacing pairs of four by their equivalent as the rules are
+    // demanding.
+
+    ausgabe_korrigiert = ausgabe.replace("VIIII" , "IX").replace("IIII" , "IV").replace("XVVVV" , "XXL")
+            .replace("XXXX" , "XL")
+
+    return ausgabe_korrigiert
 }
