@@ -68,7 +68,7 @@ class RomanNumeralsTest {
 
     @Test
     fun asRoman39() {
-        val roman = asRoman(23)
+        val roman = asRoman(39)
         assertEquals("XXXIX", roman)
     }
 
@@ -80,7 +80,7 @@ class RomanNumeralsTest {
 
     @Test
     fun asRoman50() {
-        val roman = asRoman(1)
+        val roman = asRoman(50)
         assertEquals("L", roman)
     }
 
