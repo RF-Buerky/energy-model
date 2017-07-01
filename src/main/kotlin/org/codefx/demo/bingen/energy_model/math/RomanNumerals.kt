@@ -17,47 +17,35 @@ val c : Int = 100
 fun asRoman(n: Int): String {
     var isToBig : Boolean = false
     var isToSmall : Boolean = false
-    var ausgabe : String = "null"
+    var ausgabe : String = ""
 
 
     if (n > 3*l){
         isToBig = true
+    } else if (n < 1*i){
+        isToSmall = true
     }
 
-    if (n >= 1*l && n <= 3*l){
-        var ausgabe_L : String = "null_L"
-        when (n){
-            150 -> ausgabe_L = "LLL"
-            in 100..149 -> ausgabe_L = "LL"
-            else -> ausgabe_L = "L"
-
-        }
-    } else if (n >= 3*x  3*x){
-        var ausgabe_X : String = "null_X"
-
-    }
     var rest : Int = n
-    if (rest >= 1*x && rest <= 3*x){
-        var ausgabe_X : String = "null_X"
 
-    }
-    else if ((rest > 3*i) && (rest  <= 3*v)){
-        var ausgabe_v : String = "null_v"
-
-    }
-    else if ((rest / i) >= 1 && (rest / i) <= 3){
-        var ausgabe_i : String = "null_i"
-        when (rest){
-            1 -> ausgabe_i = "I"
-            2 -> ausgabe_i = "II"
-            3 -> ausgabe_i = "III"
+    while (rest != 0){
+        while (rest >= l){
+            ausgabe = ausgabe + "L"
+            rest = rest - l
         }
 
+        while (rest >= x){
+            ausgabe = ausgabe + "X"
+            rest = rest - x
+        }
+
+        while (rest >= v){
+            ausgabe = ausgabe + "V"
+            rest = rest - v
+        }
     }
-    else {
-        ausgabe = "Fehler! Nur positive Zahlen!"
-    }
-    ausgabe.
+
+
 
     if (isToBig || isToSmall){
         ausgabe = "Nur zahlen zwischen 1 und 150 möglich!"
