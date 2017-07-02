@@ -42,7 +42,7 @@ class Account(var balance: Int, var limit: Int) {
     // The equivalent way would be to withdraw the (positive) amount of money. So this is the way
     // we are going here, also.
     fun deposit(amount: Int): Int {
-        var depositedAmount : Int = 0
+        var depositedAmount : Int
         if (amount < 0){
             depositedAmount = 0
             balance = balance
@@ -60,7 +60,7 @@ class Account(var balance: Int, var limit: Int) {
     // The equivalent way would be to deposit the (positive) amount of money. So this is the way
     // we are going here, also.
     fun withdraw(amount: Int): Int {
-        var withdrawedAmount : Int = 0
+        var withdrawedAmount : Int
 
         if (amount < 0) {
             withdrawedAmount = 0
