@@ -17,8 +17,8 @@ val c : Int = 100
 fun asRoman(n: Int): String {
     var isToBig : Boolean = false
     var isToSmall : Boolean = false
-    var ausgabe : String = ""
-    var ausgabe_korrigiert : String = ""
+    var output : String = ""
+    var outputCorrected : String
 
     // At first here we get a String with always the highest number possible. The rule to not make an addition
     // of four identical figures is not faced here. We do this later.
@@ -27,43 +27,46 @@ fun asRoman(n: Int): String {
         isToBig = true
     } else if (n < 1*i){
         isToSmall = true
+    } else {
+        isToBig = false
+        isToSmall = false
     }
 
     var rest : Int = n
 
     while (rest != 0){
         while (rest >= l){
-            ausgabe = ausgabe + "L"
+            output = output + "L"
             rest = rest - l
         }
 
         while (rest >= x){
-            ausgabe = ausgabe + "X"
+            output = output + "X"
             rest = rest - x
         }
 
         while (rest >= v){
-            ausgabe = ausgabe + "V"
+            output = output + "V"
             rest = rest - v
         }
 
         while (rest >= i){
-            ausgabe = ausgabe + "I"
+            output = output + "I"
             rest = rest - i
         }
     }
 
 
     if (isToBig || isToSmall){
-        ausgabe = "Nur zahlen zwischen 1 und 89 möglich!"
+        output = "Nur zahlen zwischen 1 und 89 möglich!"
     }
 
     // Now we face the rule of no addition with four ore more identical figures along side.
     // We solve this problem by replacing pairs of four by their equivalent as the rules are
     // demanding.
 
-    ausgabe_korrigiert = ausgabe.replace("VIIII" , "IX").replace("IIII" , "IV").replace("XVVVV" , "XXL")
+    outputCorrected = output.replace("VIIII" , "IX").replace("IIII" , "IV").replace("XVVVV" , "XXL")
             .replace("XXXX" , "XL")
 
-    return ausgabe_korrigiert
+    return outputCorrected
 }
