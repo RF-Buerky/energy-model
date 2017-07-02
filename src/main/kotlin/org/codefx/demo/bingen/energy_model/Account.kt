@@ -65,7 +65,7 @@ class Account(var balance: Int, var limit: Int) {
         if (amount < 0) {
             withdrawedAmount = 0
             balance = balance
-        } else if (balance >= amount || balance < amount && balance-amount>limit) {
+        } else if (balance - amount >limit) {
                 // balance suffices, pay out the money
             withdrawedAmount = amount
             balance = balance - amount
