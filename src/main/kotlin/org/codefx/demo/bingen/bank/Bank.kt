@@ -93,7 +93,8 @@ class Bank {
 
     fun transferBetweenCustomers(from: Customer, to: Customer, amount: Money): Money {
         val fromAccount = from.defaultAccount
-        val toAccount = from.defaultAccount
+        // There has been a mistake corrected by solving TODO #2
+        val toAccount = to.defaultAccount
         return transferBetweenAccounts(fromAccount, toAccount, amount)
     }
 

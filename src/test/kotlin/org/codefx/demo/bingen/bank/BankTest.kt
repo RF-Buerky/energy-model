@@ -87,8 +87,8 @@ class BankTest {
     fun withdrawingMoney2() {
         // withdrawing with overdrawing but within the limits borders
         val john = bank.newCustomer("John Doe")
-        val account = bank.openAccount(john, openingDeposit = Money(100), limit = Balance(-100))
-        bank.withdraw(account , Money(120))
+        val account = bank.openAccount(john, openingDeposit = Money(1000), limit = Balance(-100))
+        bank.withdraw(account , Money(1020))
         val x = account.balance
 
         assertEquals(Balance(-20) , x)
@@ -127,30 +127,27 @@ class BankTest {
 
     // The following test was made in order to solve TODO #2
     // test if transferring money between customers works
-
-    /*
     @Test
     fun transferringMoneyBetweenCustomers1() {
         val john = bank.newCustomer("John Doe")
+        bank.deposit(john.defaultAccount , Money(800))
         val bob = bank.newCustomer("Bob Builder")
-
-
-        fun transferBetweenCustomers(from: Customer, to: Customer, amount: Money): Money {
-            val fromAccount = from.defaultAccount
-            val toAccount = from.defaultAccount
-            return transferBetweenAccounts(fromAccount, toAccount, amount)
-        }
-
-
-        bank.transferBetweenCustomers(from = john , to = bob , amount = Money(3000))
+        bank.deposit(bob.defaultAccount , Money(20))
 
         val a = john.defaultAccount.balance
         val b = bob.defaultAccount.balance
 
-        assertEquals(Balance(3500) , a)
-        assertEquals (Balance (-3100) , b)
+        assertEquals(Balance(800) , a)
+        assertEquals (Balance (20) , b)
+
+        bank.transferBetweenCustomers(from = john , to = bob , amount = Money(300))
+
+        val a2 = john.defaultAccount.balance
+        val b2 = bob.defaultAccount.balance
+
+        assertEquals(Balance(500) , a2)
+        assertEquals (Balance (320) , b2)
     }
-    */
 
 
     // TRANSFERRING
