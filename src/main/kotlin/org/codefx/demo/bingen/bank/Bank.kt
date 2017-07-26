@@ -33,6 +33,9 @@ class Bank {
 
         val newAccount = Account()
         customer.accounts.add(newAccount)
+
+        deposit (newAccount , openingDeposit)
+
         return newAccount
     }
 
@@ -41,19 +44,19 @@ class Bank {
             println("!! CUSTOMER DOES NOT BELONG TO THIS BANK")
             return Money(0)
         }
-
-        if (account.balance.isOverdrawn()) {
+        else if (account.balance.isOverdrawn()) {
             println("!! OVERDRAWN ACCOUNT CAN NOT BE CLOSED")
             return Money(0)
+        } else {
+
+            customer.accounts.remove(account)
+
+            if (customer.accounts.isEmpty()) {
+                customers.remove(customer)
+            }
+
+            return account.withdrawRemaining()
         }
-
-        customer.accounts.remove(account)
-
-        if (customer.accounts.isEmpty()) {
-            customers.remove(customer)
-        }
-
-        return account.withdrawRemaining()
     }
 
     fun newCustomer(name: String): Customer {
@@ -72,7 +75,7 @@ class Bank {
     }
 
     fun withdraw(account: Account, amount: Money): Money {
-        return account.deposit(amount)
+        return account.withdraw(amount)
     }
 
     fun transferBetweenAccounts(from: Account, to: Account, amount: Money): Money {
