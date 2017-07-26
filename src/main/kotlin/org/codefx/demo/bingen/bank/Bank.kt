@@ -34,7 +34,11 @@ class Bank {
         val newAccount = Account()
         customer.accounts.add(newAccount)
 
+        // The following line needet to be added in order to solve TODO #1
         deposit (newAccount , openingDeposit)
+
+        // The following line needet to be added in order to solve TODO #1
+        bank_setNewLimit(newAccount , limit)
 
         return newAccount
     }
@@ -75,6 +79,8 @@ class Bank {
     }
 
     fun withdraw(account: Account, amount: Money): Money {
+        // The following code was wrong and has been corrected in order solve TODO #1
+        // return account.deposit(amount)
         return account.withdraw(amount)
     }
 
@@ -91,4 +97,8 @@ class Bank {
         return transferBetweenAccounts(fromAccount, toAccount, amount)
     }
 
+    // The following function needet to be added in order to solve TODO #1
+    fun bank_setNewLimit (account: Account , newLimit : Balance): Balance {
+        return account.setNewLimit(newLimit)
+    }
 }

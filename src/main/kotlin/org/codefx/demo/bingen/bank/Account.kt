@@ -41,4 +41,9 @@ class Account(openingDeposit: Money = Money(0), limit: Balance = Balance(0)) {
         return withdraw(remainingAmount)
     }
 
+    // The following function needet to be added in order to solve TODO #1
+    fun setNewLimit (newLimit : Balance):Balance{
+        limit = newLimit
+        return newLimit
+    }
 }
