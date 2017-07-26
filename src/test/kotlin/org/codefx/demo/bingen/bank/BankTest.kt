@@ -2,6 +2,7 @@ package org.codefx.demo.bingen.bank
 
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class BankTest {
@@ -54,6 +55,103 @@ class BankTest {
 
         assertTrue(bank.closeAccount(john, account) == Money(0))
     }
+
+    // The following test was made in order to solve TODO #2
+    // test if depositing money works
+    @Test
+    fun depositingMoney1() {
+        val john = bank.newCustomer("John Doe")
+        val account = bank.openAccount(john, openingDeposit = Money(100), limit = Balance(-100))
+        bank.deposit(account , Money(80))
+        val x = account.balance
+
+        assertEquals(Balance(180) , x)
+    }
+
+    // The following test was made in order to solve TODO #2
+    // test if withdrawing money works
+    @Test
+    fun withdrawingMoney1() {
+        // withdrawing without overdrawing
+        val john = bank.newCustomer("John Doe")
+        val account = bank.openAccount(john, openingDeposit = Money(100), limit = Balance(-100))
+        bank.withdraw(account , Money(80))
+        val x = account.balance
+
+        assertEquals(Balance(20) , x)
+    }
+
+    // The following test was made in order to solve TODO #2
+    // test if withdrawing money works
+    @Test
+    fun withdrawingMoney2() {
+        // withdrawing with overdrawing but within the limits borders
+        val john = bank.newCustomer("John Doe")
+        val account = bank.openAccount(john, openingDeposit = Money(100), limit = Balance(-100))
+        bank.withdraw(account , Money(120))
+        val x = account.balance
+
+        assertEquals(Balance(-20) , x)
+    }
+
+    // The following test was made in order to solve TODO #2
+    // test if withdrawing money works
+    @Test
+    fun withdrawingMoney3() {
+        // withdrawing attemp to withdraw more as the limit should allow
+        val john = bank.newCustomer("John Doe")
+        val account = bank.openAccount(john, openingDeposit = Money(100), limit = Balance(-100))
+        bank.withdraw(account , Money(500))
+        val x = account.balance
+
+        assertEquals(Balance(100) , x)
+    }
+
+    // The following test was made in order to solve TODO #2
+    // test if transferring money between accounts works
+    @Test
+    fun transferringMoneyBetweenAccounts1() {
+        val john = bank.newCustomer("John Doe")
+        val accountA = bank.openAccount(john, openingDeposit = Money(500), limit = Balance(-100))
+        val bob = bank.newCustomer("Bob Builder")
+        val accountB = bank.openAccount(bob, openingDeposit = Money(-100), limit = Balance(-5000))
+
+        bank.transferBetweenAccounts(from = accountB , to = accountA , amount = Money(3000))
+
+        val a = accountA.balance
+        val b = accountB.balance
+
+        assertEquals(Balance(3500) , a)
+        assertEquals (Balance (-3100) , b)
+    }
+
+    // The following test was made in order to solve TODO #2
+    // test if transferring money between customers works
+
+    /*
+    @Test
+    fun transferringMoneyBetweenCustomers1() {
+        val john = bank.newCustomer("John Doe")
+        val bob = bank.newCustomer("Bob Builder")
+
+
+        fun transferBetweenCustomers(from: Customer, to: Customer, amount: Money): Money {
+            val fromAccount = from.defaultAccount
+            val toAccount = from.defaultAccount
+            return transferBetweenAccounts(fromAccount, toAccount, amount)
+        }
+
+
+        bank.transferBetweenCustomers(from = john , to = bob , amount = Money(3000))
+
+        val a = john.defaultAccount.balance
+        val b = bob.defaultAccount.balance
+
+        assertEquals(Balance(3500) , a)
+        assertEquals (Balance (-3100) , b)
+    }
+    */
+
 
     // TRANSFERRING
 
