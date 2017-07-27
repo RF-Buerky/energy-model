@@ -1,9 +1,21 @@
 package org.codefx.demo.bingen.bank
 
+import com.univocity.parsers.common.record.Record
+import com.univocity.parsers.csv.CsvParser
+import com.univocity.parsers.csv.CsvParserSettings
+import com.univocity.parsers.csv.CsvWriter
+import com.univocity.parsers.csv.CsvWriterSettings
+import org.codefx.demo.bingen.FileAccess
+
 /*
  * TODO #3: Use the bank
  *
  * Create a bank, some customers, and accounts and transfer some money back and forth.
+ *
+ * TODO #5: Read/write the bank
+ *
+ * Use the readBankFromCsv and writeBankToCsv methods to read/write the bank.
+ * Depending on the other tasks, it is possible that the code needs to be changed.
  */
 
 // all the following code was added in order to solve TODO #3
@@ -34,4 +46,3 @@ fun main (args: Array<String>){
 
 
 }
-

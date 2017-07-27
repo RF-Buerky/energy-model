@@ -1,5 +1,7 @@
 package org.codefx.demo.bingen.bank
 
+import org.codefx.demo.bingen.NullSafeComparator
+
 class Bank {
 
     /*

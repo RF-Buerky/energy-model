@@ -8,4 +8,8 @@ class Customer(val name: String, var defaultAccount: Account) {
         accounts.add(defaultAccount)
     }
 
+    override fun toString(): String {
+        return "Customer('$name', defaultAccount=$defaultAccount)"
+    }
+
 }
