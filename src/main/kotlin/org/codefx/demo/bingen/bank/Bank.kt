@@ -38,7 +38,7 @@ class Bank {
          */
         // New version of line:
         val newAccount = Account(limit = limit)
-        
+
         customer.accounts.add(newAccount)
 
         // The following line needet to be added in order to solve TODO #1
