@@ -31,14 +31,26 @@ class Bank {
             println("!! CUSTOMER DOES NOT BELONG TO THIS BANK")
         }
 
+        // The following line needet to be changed in order to solve TODO #1
+        // old version of line:
+        /*
         val newAccount = Account()
+         */
+        // New version of line:
+        val newAccount = Account(limit = limit)
+        
         customer.accounts.add(newAccount)
 
         // The following line needet to be added in order to solve TODO #1
         deposit (newAccount , openingDeposit)
 
         // The following line needet to be added in order to solve TODO #1
-        bank_setNewLimit(newAccount , limit)
+        /*
+           bank_setNewLimit(newAccount , limit)
+         */
+        // A better way was found instead of using this function. Just implement the limit inside
+        // the declaration of the new Account
+        // Changing 'val newAccount = Account()' into 'val newAccount = Account(limit = limit)
 
         return newAccount
     }
