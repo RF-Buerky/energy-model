@@ -46,4 +46,4 @@ class Account(openingDeposit: Money = Money(0), limit: Balance = Balance(0)) {
         limit = newLimit
         return newLimit
     }
-}
+

@@ -7,7 +7,7 @@ package org.codefx.demo.bingen.bank
  *
  * [1]: https://kotlinlang.org/docs/reference/functions.html#default-arguments
  */
-data class Money(val centAmount: Int, val currency: Currency = Currency.EURO) {
+data class Money(val centAmount: Int, val currency: Currency = Currency.EURO): Comparable<Money> {
 
     init {
         if (centAmount < 0) {
@@ -17,12 +17,16 @@ data class Money(val centAmount: Int, val currency: Currency = Currency.EURO) {
 
     constructor(balance: Balance) : this(balance.centAmount, balance.currency)
 
+    override fun compareTo(other: Money): Int {
+        return this.centAmount - other.centAmount
+    }
+
 }
 
 /**
  * Balance is a value (i.e. a data class). The amount can be negative.
  */
-data class Balance(val centAmount: Int, val currency: Currency = Currency.EURO) {
+data class Balance(val centAmount: Int, val currency: Currency = Currency.EURO): Comparable<Balance> {
 
     constructor(money: Money) : this(money.centAmount, money.currency)
 
@@ -42,6 +46,14 @@ data class Balance(val centAmount: Int, val currency: Currency = Currency.EURO) 
 
     fun isOverdrawn(): Boolean {
         return this.centAmount < 0
+    }
+
+    override fun toString(): String {
+        return "$centAmount ${currency}Ct)"
+    }
+
+    override fun compareTo(other: Balance): Int {
+        return this.centAmount - other.centAmount
     }
 
 }
