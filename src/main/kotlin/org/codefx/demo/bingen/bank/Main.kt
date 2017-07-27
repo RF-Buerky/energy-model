@@ -31,7 +31,7 @@ fun main (args: Array<String>){
     bank_ironBank.transferBetweenCustomers(customer_1 , customer_2 , Money (8000))
     bank_ironBank.transferBetweenCustomers(customer_2 , customer_3 , Money (7000))
     bank_ironBank.transferBetweenAccounts(customer_3.defaultAccount , cust3SecondAcc , Money(4500))
-    
+
 
 }
 
